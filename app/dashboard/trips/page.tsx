@@ -1,11 +1,8 @@
 import React from 'react'
-import Hero from './components/home/Hero'
 
 const page = () => {
   return (
-    <div>page
-      <Hero/>
-    </div>
+    <div>page trips</div>
   )
 }
 
