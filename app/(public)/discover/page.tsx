@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const page = () => {
+const page = () => {
   return (
-    <div>dicover</div>
+    <div>page</div>
   )
 }
+
+export default page
