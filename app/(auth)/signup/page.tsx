@@ -157,7 +157,7 @@ const Signup = () => {
             {/* Login */}
             <p className="text-center text-[#6B7280] text-sm pt-2">
               Already have an account?{" "}
-              <span onClick={()=>router.push("/signup")} className="text-[#004AC6] font-medium cursor-pointer hover:underline">
+              <span onClick={()=>router.push("/login")} className="text-[#004AC6] font-medium cursor-pointer hover:underline">
                 Log In
               </span>
             </p>
