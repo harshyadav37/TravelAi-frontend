@@ -43,8 +43,8 @@ const DestinationCard = ({ name, country, price, image, slug, badge }: Destinati
             <p className="text-2xl font-bold text-[#0F3D9E]">{price}</p>
           </div>
 
-          <button onClick={() => router.push(`/destinations/${slug}`)} className="rounded-xl bg-[#0F3D9E] px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700">
-            Explore
+          <button onClick={() => router.push(`/booking`)} className="rounded-xl bg-[#0F3D9E] px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700">
+            Book know
           </button>
         </div>
       </div>
