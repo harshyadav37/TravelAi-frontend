@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop + Mobile Navbar */}
-      <header className="sticky top-0 z-40 w-full  border-b bg-white">
+      <header className="sticky top-0 z-40 w-full  border-b border-gray-200 bg-white">
        <div className="flex h-20 w-full items-center justify-between px-6 lg:px-12">
           {/* Logo */}
           <div className="flex items-center gap-22">
