@@ -30,6 +30,10 @@ const Navbar = () => {
       name: "Destinations",
       href: "/destinations",
     },
+    {
+      name:"MyTrips",
+      href:"/my-trips"
+    },
   ];
 
   return (
@@ -49,7 +53,7 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
               <Link
-                href="/explore"
+                href="/home"
                 className="border-b-2 border-blue-600 pb-1 text-sm font-medium text-blue-600"
               >
                 Explore
@@ -76,13 +80,12 @@ const Navbar = () => {
                 AI Planner
               </Link>
 
-              {/* <Link
-                href="/ai-planner"
-                className="flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition"
+              <Link
+                href="/my-Trips"
+                className="text-sm font-medium text-gray-600 hover:text-black transition"
               >
-                <Sparkles size={16} />
-                AI Planner
-              </Link> */}
+                MyTrips
+              </Link>
             </nav>
           </div>
 
