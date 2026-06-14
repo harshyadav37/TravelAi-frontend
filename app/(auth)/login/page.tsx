@@ -171,7 +171,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleLogin = async ( e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -184,7 +184,8 @@ export default function LoginPage() {
 
       alert("Login Successful!");
       console.log(userCredential.user);
-    } catch (error) {
+    } catch (error:any) {
+      
       alert(error.message);
     }
   };
