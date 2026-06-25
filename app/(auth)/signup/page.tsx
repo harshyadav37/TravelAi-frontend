@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 const Signup = () => {
   const router=useRouter();
+  
   return (
     <div className="h-screen bg-[#f4f6fa] flex items-center justify-center p-4 overflow-hidden">
       <div className="w-full max-w-6xl h-[95vh] bg-white rounded-3xl overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-2">
@@ -46,7 +47,7 @@ const Signup = () => {
           </p>
 
           <form className="mt-6 space-y-4">
-            {/* Full Name */}
+            {/* Full Name section*/}
             <div>
               <label className="block text-sm font-medium text-[#374151] mb-2">
                 Full Name
