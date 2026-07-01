@@ -8,7 +8,7 @@ const Page = () => {
 const router=useRouter();
   return (
     <div className="w-full min-h-screen bg-white">
-      {/* HERO SECTION jhhj*/}
+      {/* HERO SECTION */}
       <section className="relative">
         <Image
           src={landscape1}
