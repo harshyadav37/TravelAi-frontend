@@ -61,7 +61,7 @@ const HPage = () => {
       );
 
       console.log("User:", res.data);
-    } catch (err) {
+    } catch (err:any) {
       console.log("API Error:", err.response?.status);
       console.log(err.response?.data);
       router.replace("/login");

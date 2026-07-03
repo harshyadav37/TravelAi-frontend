@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
    const [openprofile , setOpenProfile] = useState(false);
@@ -117,7 +118,7 @@ const Navbar = () => {
        <ProfilePopup
         openprofile={openprofile}
         setOpenProfile={setOpenProfile}
-        onClose={() => setOpenProfile(false)}
+        // onClose={() => setOpenProfile(false)}
       />
 
       {/* Overlay */}

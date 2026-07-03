@@ -1,3 +1,10 @@
+"use client";
+
+import { useState } from "react";
+interface ProfilePopupProps {
+  openprofile: boolean;
+  onClose: () => void;
+}
 
 
  export function ProfilePopup({ openprofile, setOpenProfile }: { openprofile: boolean; setOpenProfile: (open: boolean) => void }) {
