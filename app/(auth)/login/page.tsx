@@ -2,10 +2,31 @@
 import Image from "next/image";
 import login from "../../../public/login.jpg";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 
 const Login = () => {
   const router=useRouter();
+const [loading, setLoading] = useState(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const handleGoogleLogin = async () => {
+   try{
+    setLoading(true);
+      const googleLoginUrl = `${apiUrl}/auth/google`;
+    window.location.href = googleLoginUrl
+   }
+   catch (error) {
+    console.error("Error during Google login:", error);
+   } finally {
+    setLoading(false);
+   }
+  }
+  const userData = localStorage.getItem("user");
+  useEffect(() => {
+    if (userData) {
+      router.push("/home");
+    }
+  }, [userData, router]);
   return (
     <div className="relative h-screen overflow-hidden flex items-center justify-center">
       {/* Background */}
@@ -42,6 +63,8 @@ const Login = () => {
           {/* Social Login */}
           <div className="grid grid-cols-2 gap-3 mt-6">
             <button
+              onClick={handleGoogleLogin}
+              disabled={loading}
               type="button"
               className="h-11 border border-gray-300 text-gray-800 rounded-xl flex items-center justify-center gap-2 text-sm font-medium hover:bg-gray-50"
             >

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import {ProfilePopup} from "./profile";
 import {
   Bell,
   User,
@@ -12,6 +13,7 @@ import {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+   const [openprofile , setOpenProfile] = useState(false);
 
   const navLinks = [
     {
@@ -95,10 +97,13 @@ const Navbar = () => {
               <Bell size={20} className="text-gray-700" />
             </button>
 
-            <button className="rounded-full p-2 hover:bg-gray-100">
+            <button onClick={() => setOpenProfile(true)} className="rounded-full p-2 hover:bg-gray-100">
               <User size={20} className="text-gray-700" />
             </button>
           </div>
+
+       
+         
 
           {/* Mobile Menu Button */}
           <button
@@ -109,6 +114,11 @@ const Navbar = () => {
           </button>
         </div>
       </header>
+       <ProfilePopup
+        openprofile={openprofile}
+        setOpenProfile={setOpenProfile}
+        onClose={() => setOpenProfile(false)}
+      />
 
       {/* Overlay */}
       <div
@@ -207,14 +217,16 @@ const Navbar = () => {
             Notifications
           </button>
 
-          <button className="mt-2 flex w-full items-center gap-3 rounded-lg px-4 py-3 hover:bg-gray-100">
+          <button onClick={() => setOpenProfile(true)} className="mt-2 flex w-full items-center gap-3 rounded-lg px-4 py-3 hover:bg-gray-100">
             <User size={20} />
             Profile
           </button>
         </div>
       </aside>
     </>
+    
   );
 };
 
 export default Navbar;
+

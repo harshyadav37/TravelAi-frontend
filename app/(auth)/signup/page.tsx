@@ -172,15 +172,3 @@ const Signup = () => {
 export default Signup;
 
 
-// import React from 'react'
-// import Auth from '../../../app/auth'
-
-// const page = () => {
-//   return (
-//     <div>page
-//       <Auth/>
-//     </div>
-//   )
-// }
-
-// export default page
