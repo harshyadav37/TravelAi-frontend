@@ -117,8 +117,7 @@ const Navbar = () => {
       </header>
        <ProfilePopup
         openprofile={openprofile}
-        setOpenProfile={setOpenProfile}
-        // onClose={() => setOpenProfile(false)}
+        onClose={() => setOpenProfile(false)}
       />
 
       {/* Overlay */}

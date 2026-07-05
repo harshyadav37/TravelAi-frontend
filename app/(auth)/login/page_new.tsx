@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import Image from "next/image";
 import login from "../../../public/login.jpg";
 import { useRouter } from "next/navigation";

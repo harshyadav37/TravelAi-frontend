@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/navbar";
 import landscape from "../../../public/landscape.jpg";
 import CuratedExperiences from "../../components/curatedExperiences";
@@ -8,68 +8,30 @@ import TrendingDeals from "../../components/trendingDeals";
 import FooterCard from "../../components/footerCards";
 import Footer from "../../components/footer";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-
+import { useAuth } from "../../context/AuthContext";
 
 const HPage = () => {
-  const router=useRouter();
- 
-
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const params = new URLSearchParams(window.location.search);
-  //     const token = params.get("access_token");
-   
-  //     if (!token) {
-  //       router.push("/login");
-  //     }
-  //          // Save token
-  //   localStorage.setItem("token", token);
-  //     try{
-       
-  //        const res = await axios.get(
-  //       `${process.env.NEXT_PUBLIC_API_URL}/auth/google/user`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //         withCredentials: true,
-  //       }
-  //     );
-
-  //     localStorage.setItem("user", JSON.stringify(res.data.user));
-
-  //     router.push("/home");
-  //     }catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //       router.push("/login");
-  //     }
-  //   }
-  //   fetchUser();
-  // }, [router]);
+  const router = useRouter();
+  const { isAuthenticated, isLoading } = useAuth();
 
   useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      console.log("Calling /auth/google/user...");
-
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/google/user`,
-        {
-          withCredentials: true,
-        }
-      );
-
-      console.log("User:", res.data);
-    } catch (err:any) {
-      console.log("API Error:", err.response?.status);
-      console.log(err.response?.data);
+    if (!isLoading && !isAuthenticated) {
       router.replace("/login");
     }
-  };
+  }, [isAuthenticated, isLoading, router]);
 
-  fetchUser();
-}, []);
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-white text-gray-700">
+        Checking your session...
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
   return (
     <div className="h-[4000px] w-full">
       <Navbar />

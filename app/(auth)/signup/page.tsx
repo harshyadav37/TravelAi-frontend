@@ -2,9 +2,55 @@
 import Image from "next/image";
 import landscape from "../../../public/landscape.jpg";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { signupUser } from "../../service/authApi";
 
 const Signup = () => {
-  const router=useRouter();
+  const router = useRouter();
+  const { isAuthenticated, isLoading } = useAuth();
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+const [loading, setLoading] = useState(false);
+
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = e.target;
+
+  setUserData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  setLoading(true);
+
+  try {
+    const response = await signupUser(userData);
+
+    alert(response.message);
+    router.replace("/login");
+  } catch (error: any) {
+    console.error(error);
+
+    alert(error.message || "Signup Failed");
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  if (!isLoading && isAuthenticated) {
+    router.replace("/home");
+  }
+}, [isAuthenticated, isLoading, router]);
   
   return (
     <div className="h-screen bg-[#f4f6fa] flex items-center justify-center p-4 overflow-hidden">
@@ -46,7 +92,7 @@ const Signup = () => {
             Join the community of modern explorers.
           </p>
 
-          <form className="mt-6 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             {/* Full Name section*/}
             <div>
               <label className="block text-sm font-medium text-[#374151] mb-2">
@@ -55,7 +101,10 @@ const Signup = () => {
 
               <input
                 type="text"
+                name="name"
                 placeholder="Alex Rivers"
+                value={userData.name}
+                onChange={handleChange}
                 className="w-full h-11 px-4 border border-gray-300 rounded-xl text-[#191C1E] placeholder:text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004AC6]"
               />
             </div>
@@ -68,7 +117,10 @@ const Signup = () => {
 
               <input
                 type="email"
+                name="email"
                 placeholder="alex@example.com"
+                value={userData.email}
+                onChange={handleChange}
                 className="w-full h-11 px-4 border border-gray-300 rounded-xl text-[#191C1E] placeholder:text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004AC6]"
               />
             </div>
@@ -82,7 +134,10 @@ const Signup = () => {
 
                 <input
                   type="password"
+                  name="password"
                   placeholder="••••••••"
+                  value={userData.password}
+                  onChange={handleChange}
                   className="w-full h-11 px-4 border border-gray-300 rounded-xl text-[#191C1E] placeholder:text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004AC6]"
                 />
               </div>
@@ -94,7 +149,10 @@ const Signup = () => {
 
                 <input
                   type="password"
+                  name="confirmPassword"
                   placeholder="••••••••"
+                  value={userData.confirmPassword}
+                  onChange={handleChange}
                   className="w-full h-11 px-4 border border-gray-300 rounded-xl text-[#191C1E] placeholder:text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#004AC6]"
                 />
               </div>
